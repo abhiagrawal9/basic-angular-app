@@ -18,6 +18,16 @@ export class RecipeListComponent implements OnInit {
       'Description 2',
       'https://assets.bonappetit.com/photos/597f6557a2d4466309949378/1:1/w_400%2Cc_limit/0817-murray-mancini-grilled-chinese-beef-broccoli.jpg'
     ),
+    new Recipe(
+      'Test Recipe 3',
+      'Description 4',
+      'https://hips.hearstapps.com/del.h-cdn.co/assets/16/21/1464124561-shot-1-033.jpg'
+    ),
+    new Recipe(
+      'Test Recipe 4',
+      'Description 4',
+      'https://assets.bonappetit.com/photos/597f6557a2d4466309949378/1:1/w_400%2Cc_limit/0817-murray-mancini-grilled-chinese-beef-broccoli.jpg'
+    ),
   ];
   constructor() {}
 
