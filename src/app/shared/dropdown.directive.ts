@@ -22,11 +22,20 @@ export class DropDownDirective {
   //   }
   // }
 
-  @HostBinding('class.open')
-  isOpen = false;
+  // @HostBinding('class.open')
+  // isOpen = false;
 
-  @HostListener('click')
-  toggleOpenClass(event: Event): void {
-    this.isOpen = !this.isOpen;
+  // @HostListener('click')
+  // toggleOpenClass(event: Event): void {
+  //   this.isOpen = !this.isOpen;
+  // }
+
+  // closing dropdown by clicking anywhere in the view
+  @HostBinding('class.open') isOpen = false;
+  @HostListener('document:click', ['$event']) toggleOpen(event: Event): void {
+    this.isOpen = this.elRef.nativeElement.contains(event.target)
+      ? !this.isOpen
+      : false;
   }
+  constructor(private elRef: ElementRef) {}
 }
