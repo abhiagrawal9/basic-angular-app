@@ -31,8 +31,11 @@ export class DropDownDirective {
   // }
 
   // closing dropdown by clicking anywhere in the view
-  @HostBinding('class.open') isOpen = false;
-  @HostListener('document:click', ['$event']) toggleOpen(event: Event): void {
+  @HostBinding('class.open')
+  isOpen = false;
+
+  @HostListener('document:click', ['$event'])
+  toggleOpen(event: Event): void {
     this.isOpen = this.elRef.nativeElement.contains(event.target)
       ? !this.isOpen
       : false;
