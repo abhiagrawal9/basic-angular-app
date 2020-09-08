@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormArray,
+  FormGroupName,
+} from '@angular/forms';
 import { RecipeService } from '../recipe.service';
 
 @Component({
@@ -60,6 +65,15 @@ export class RecipeEditComponent implements OnInit {
   // tslint:disable-next-line: typedef
   get controls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
+  }
+
+  onAddIngredient(): void {
+    (this.recipeForm.get('ingredients') as FormArray).push(
+      new FormGroup({
+        name: new FormControl(),
+        amount: new FormControl(),
+      })
+    );
   }
 
   onSubmit(): void {
