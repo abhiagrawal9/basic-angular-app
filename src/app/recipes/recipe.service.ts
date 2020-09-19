@@ -12,8 +12,8 @@ export class RecipeService {
 
   private recipes: Recipe[] = [
     new Recipe(
-      'A Cheese Recipe',
-      'This is simply a test',
+      'A Cheese Recipe updated',
+      'This is simply a test recipe Updated',
       'https://cdn.shortpixel.ai/spai/w_995+q_lossy+ret_img+to_webp/https://recipefairy.com/wp-content/uploads/2020/07/kfc-mac-and-cheese.jpg',
       [new Ingredient('cheese', 2), new Ingredient('butter', 5)]
     ),
@@ -43,6 +43,11 @@ export class RecipeService {
 
   getRecipe(index: number): Recipe {
     return this.recipes[index];
+  }
+
+  setRecipes(recipes: Recipe[]): void {
+    this.recipes = recipes;
+    this.recipesChanged.next(this.recipes.slice());
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]): void {
