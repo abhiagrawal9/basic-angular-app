@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 import { RecipeService } from './recipes/recipe.service';
 import { Recipe } from './recipes/recipe.model';
@@ -18,7 +19,6 @@ export class DataStorageService {
       )
       .subscribe(
         (response) => {
-          console.log('Data is stored.');
           console.log(response);
         },
         (error: Error) => {
@@ -31,6 +31,16 @@ export class DataStorageService {
     this.http
       .get<Recipe[]>(
         'https://basic-angular-app-ee32c.firebaseio.com/recipes.json'
+      )
+      .pipe(
+        map((recipes: Recipe[]) => {
+          return recipes.map((recipe) => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : [],
+            };
+          });
+        })
       )
       .subscribe(
         (data) => {
