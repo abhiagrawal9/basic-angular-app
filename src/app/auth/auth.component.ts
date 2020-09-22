@@ -38,24 +38,8 @@ export class AuthComponent implements OnInit {
           console.log(res);
           this.isLoading = false;
         },
-        (error: Error) => {
-          // tslint:disable-next-line: no-string-literal
-          const message = error['error'].error.message;
-          switch (message) {
-            case 'EMAIL_EXISTS':
-              this.error = 'Email is already exists.';
-              break;
-            case 'OPERATION_NOT_ALLOWED':
-              this.error = 'Password signin is disabled for the project.';
-              break;
-            case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-              this.error =
-                'Account is blocked due to unusual activity. Please contact support';
-              break;
-            default:
-              this.error = 'An error occurred!';
-              break;
-          }
+        (errMessage: string) => {
+          this.error = errMessage;
           this.isLoading = false;
         }
       );
