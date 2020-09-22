@@ -40,10 +40,11 @@ export class AuthComponent implements OnInit {
     authObservable.subscribe(
       (res) => {
         this.isLoading = false;
+        this.error = null;
       },
       (errMessage: string) => {
-        this.error = errMessage;
         this.isLoading = false;
+        this.error = errMessage;
       }
     );
     form.reset();
