@@ -30,7 +30,7 @@ export class AuthService {
       )
       .pipe(
         catchError((errorRes) => {
-          let errMessage: string;
+          let errMessage = 'An unknown error occurred.';
 
           if (!errorRes.error || !errorRes.error.error) {
             return throwError(errMessage);
@@ -48,7 +48,7 @@ export class AuthService {
                 'Account is blocked due to unusual activity. Please contact support';
               break;
             default:
-              errMessage = 'An unknown error occurred!';
+              errMessage = 'An error occurred!';
               break;
           }
           return throwError(errMessage);
