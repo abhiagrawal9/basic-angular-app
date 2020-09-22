@@ -17,7 +17,8 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  AUTH_KEY = 'AIzaSyDVivbdRlBta3Uvp0RCSuVuE3tPyG0FemU';
+  private AUTH_KEY = 'AIzaSyDVivbdRlBta3Uvp0RCSuVuE3tPyG0FemU';
+
   constructor(private http: HttpClient) {}
 
   signUp(email: string, password: string): Observable<AuthResponseData> {
