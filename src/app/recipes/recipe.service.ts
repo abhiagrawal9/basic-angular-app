@@ -40,7 +40,6 @@ export class RecipeService {
   constructor(private shoppinglistService: ShoppingListService) {}
 
   getRecipes(): Recipe[] {
-    console.log(this.recipes.length + '- getting recipes');
     return this.recipes.slice();
   }
 
@@ -51,8 +50,6 @@ export class RecipeService {
   setRecipes(recipes: Recipe[]): void {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
-    console.log('data is set');
-    console.log(this.recipes.length + ' - after setting');
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]): void {

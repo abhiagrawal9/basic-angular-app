@@ -21,9 +21,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userSub = this.authServcie.user.subscribe((user) => {
       this.isAuthenciated = !user ? false : true;
       // this.isAuthenciated = !!user; one more way to do above step
-      console.log('Auth ' + this.isAuthenciated);
-      console.log(!user);
-      console.log(!!user);
     });
   }
 
