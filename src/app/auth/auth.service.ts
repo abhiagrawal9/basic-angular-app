@@ -23,6 +23,7 @@ export class AuthService {
   private AUTH_KEY = 'AIzaSyDVivbdRlBta3Uvp0RCSuVuE3tPyG0FemU';
   // user = new Subject<User>();
   user = new BehaviorSubject<User>(null);
+  private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -92,14 +93,26 @@ export class AuthService {
     );
     if (loadedUser.token) {
       this.user.next(loadedUser);
+      this.autoLogout(
+        new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()
+      );
     }
   }
 
   logout(): void {
     this.user.next(null);
-    localStorage.removeItem('userData');
-
     this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoLogout(expirationDuration: number): void {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
   }
 
   private userHandler(
@@ -113,6 +126,7 @@ export class AuthService {
     );
     const user = new User(email, localId, idToken, tokenExpirationDate);
     this.user.next(user);
+    this.autoLogout(expiresIn * 1000);
     localStorage.setItem('userData', JSON.stringify(user));
   }
 
