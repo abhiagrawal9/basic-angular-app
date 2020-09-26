@@ -7,7 +7,6 @@ import { HeaderComponent } from './header/header.component';
 import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { RecipesModule } from './recipes/recipes.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
 
@@ -17,7 +16,6 @@ import { CoreModule } from './core.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RecipesModule,
     ShoppingListModule,
     SharedModule,
     CoreModule,
